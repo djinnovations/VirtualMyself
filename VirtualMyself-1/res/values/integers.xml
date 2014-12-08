@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="large">15</integer>
+    <integer name="small">18</integer>
+    <integer name="eight">8</integer>
+    <integer name="fifteen">15</integer>
+    <integer name="eighteen">18</integer>
+</resources>

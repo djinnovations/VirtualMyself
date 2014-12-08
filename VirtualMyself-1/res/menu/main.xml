@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dj.virtualmyself_1.MainActivity" >
+
+    <item
+        android:id="@+id/about_app"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/about_app"/>
+
+</menu>

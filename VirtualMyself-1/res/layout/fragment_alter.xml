@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/alter_bgn">
+
+    <LinearLayout
+        android:id="@+id/linHor1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" >
+	
+	<HorizontalScrollView android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvAlterQues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="8"
+            android:scrollHorizontally="true"
+            android:text="Medium Text"
+            android:scrollbars="horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+	</HorizontalScrollView>
+        <TextView
+            android:id="@+id/tvAlterKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:maxEms="@integer/small"
+            android:text="question(keyword)"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linHor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp" >
+        
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:onClick="prevClick"
+            android:text="@string/previous" />
+
+        <Button
+            android:id="@+id/btnAlterSave"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="Update" />
+        
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:onClick="nextClick"
+            android:text="@string/next" />
+        
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etAlterAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linHor2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:ems="20"
+        android:gravity="left"
+        android:singleLine="true"
+        android:scrollHorizontally="true">
+
+        <requestFocus />
+    </EditText>
+   
+</RelativeLayout>
