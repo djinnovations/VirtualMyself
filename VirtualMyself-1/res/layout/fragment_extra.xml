@@ -15,7 +15,8 @@
         <EditText
             android:id="@+id/etExtraQues"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:hint="Enter your Question here" >
 
             <requestFocus />
         </EditText>
@@ -47,7 +48,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:ems="20"
-            android:gravity="left" />
+            android:gravity="left"
+            android:hint="Enter your Answer here" />
 
         <TextView
             android:id="@+id/tvExtraFull"

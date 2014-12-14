@@ -6,11 +6,15 @@ import com.dj.virtualmyself_1.R;
 import android.app.Fragment;
 import android.database.CursorIndexOutOfBoundsException;
 import android.database.DatabaseUtils;
+
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,12 +32,13 @@ public class AlterFragment extends Fragment implements View.OnClickListener{
 	int currentIndex=min;
 	int max;
 	int prevIn;
+	View useView;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 	
 		View alterView = inflater.inflate(R.layout.fragment_alter, container, false);
-		
+		useView=alterView;
 		etAns= (EditText) alterView.findViewById(R.id.etAlterAnswer);
 		etAns.setMovementMethod(new ScrollingMovementMethod());
 		tvQues= (TextView) alterView.findViewById(R.id.tvAlterQues);
@@ -88,14 +93,25 @@ public class AlterFragment extends Fragment implements View.OnClickListener{
 	
 	private void update() {
 		
-		if(!(etAns.getText().toString().trim().length()==0)){
-			obj.writeDb("UPDATE Virtual SET Answer='"+etAns.getText().toString()+"'"+" WHERE QuestionId="+currentIndex);
-			Toast.makeText(getActivity().getBaseContext(), "Successfully Updated", Toast.LENGTH_SHORT).show();
-		
+		try{
+			if(!(etAns.getText().toString().trim().length()==0)){
+				obj.writeDb("UPDATE Virtual SET Answer='"+etAns.getText().toString()+"'"+" WHERE QuestionId="+currentIndex);
+				Toast.makeText(getActivity().getBaseContext(), "Successfully Updated", Toast.LENGTH_SHORT).show();
+			
+			}
+			
+			else{
+				Toast.makeText(getActivity().getBaseContext(), "Oops!..Answer field cannot be blank", Toast.LENGTH_SHORT).show();
+				Animation shake=AnimationUtils.loadAnimation(getActivity().getBaseContext(), R.anim.shake);
+				useView.findViewById(R.id.btnAlterSave).startAnimation(shake);
+			}	
+			
+		}catch(CursorIndexOutOfBoundsException ex){
+			Toast.makeText(getActivity().getBaseContext(), "Oops!..No records found in Database", Toast.LENGTH_SHORT).show();
+		}catch(SQLiteException ex ){
+			Toast.makeText(getActivity().getBaseContext(),"Oops!..No records found in Database", Toast.LENGTH_SHORT).show();
 		}
 		
-		else
-			Toast.makeText(getActivity().getBaseContext(), "Oops!..Answer field cannot be blank", Toast.LENGTH_SHORT).show();
 		
 	}
 
@@ -152,5 +168,11 @@ public class AlterFragment extends Fragment implements View.OnClickListener{
 			btnNext.setEnabled(true);
 			btnPrev.setEnabled(true);
 		}
+	
+	@Override
+	public void onDestroyView() {
+		obj.close();
+		super.onDestroyView();
+	}
 
 }

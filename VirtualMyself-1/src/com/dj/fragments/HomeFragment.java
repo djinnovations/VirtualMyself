@@ -252,12 +252,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 }
 	
 	@Override
-	public void onDestroy() {
-		tts.shutdown();
-		super.onDestroy();
+	public void onDestroyView() {
+		
+		obj.close();
+		super.onDestroyView();
 	}
 	
-    
+    @Override
+    public void onDestroy() {
+    	tts.shutdown();
+    	super.onDestroy();
+    }
     
 	
 }
